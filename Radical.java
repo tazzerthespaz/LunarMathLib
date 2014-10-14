@@ -3,7 +3,7 @@ package com.lunarempire.squarerootcalculator;
 import java.util.ArrayList;
 
 public class Radical {
-	int[] primea_list = {139,101,101,97,89,83,79,73,71,67,61,59,53,47,43,41,37,31,29,23,19,17,13,11,7,5,3,2};
+	int[] prime_list = {139,101,101,97,89,83,79,73,71,67,61,59,53,47,43,41,37,31,29,23,19,17,13,11,7,5,3,2};
 	int[] prime_tally_list = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	int[] div_tally = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	int orig_in_num;
