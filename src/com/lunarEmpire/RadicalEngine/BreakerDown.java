@@ -4,10 +4,11 @@ import java.util.Map;
 
 public class BreakerDown {
 	private int input;
-	private Map<Integer,Integer> dictionary = new PrimeDict(input).getDict();
+	private Map<Integer,Integer> dictionary;
 	
 	BreakerDown(int input){
 		this.input = input;
+		this.dictionary = new PrimeDict(input).getDict();
 		breakDown();
 	}
 	
