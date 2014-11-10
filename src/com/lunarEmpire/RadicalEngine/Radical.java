@@ -34,6 +34,9 @@ public class Radical{
 
 			}
 		}
+		for(int key : dictionary.keySet() ) {
+			this.simpInNum *= (dictionary.get(key) * key);
+		}
 	}
 	public int getSimpInNum(){
 		return this.simpInNum;
