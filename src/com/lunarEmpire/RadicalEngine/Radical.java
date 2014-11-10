@@ -1,8 +1,6 @@
 package com.lunarEmpire.RadicalEngine;
 
-import java.math.BigInteger;
 import java.util.Map;
-
 
 public class Radical{
 	private int inNum;
@@ -14,9 +12,22 @@ public class Radical{
 	private Map<Integer, Integer> dictionary;
 	
 	Radical(int inNum, int outNum, int index){
+		//See if its imaginary
+		if((inNum < 0) && (index % 2 != 0)) {
+			imaginary = false;
+			
+		}else{
+			imaginary = true;
+		}
+		//avoid an infinite loop by making the number positive
+		if(inNum < 0){
+			inNum *= -1;
+		}
+		
 		this.inNum = inNum;
 		this.outNum = outNum;
 		this.index = index;
+		//create the the hashmap with everything already factored out
 		this.dictionary = new BreakerDown(inNum).getDictionary();
 		simplify();
 	}
@@ -29,15 +40,13 @@ public class Radical{
 		for(int key : dictionary.keySet() ){
 			
 			if(dictionary.get(key) >= index ){ // If there is enough to take out a set
-				simpOutNum = (int) (simpOutNum * (Math.pow(key,(int)(dictionary.get(key) / index)))); // the outer number is multiplied by the taken out values
-				System.out.println("The value for the key: " + key + " is: " + dictionary.get(key));
+				simpOutNum = (int) (simpOutNum * (Math.pow(key,(int)(dictionary.get(key) / index)))); // the outer number is multiplied by the taken out groups of numbers
 				dictionary.put(key,dictionary.get(key) - (int)(dictionary.get(key) / index) * index); // the left over numbers that weren't taken out are left in the map
 			}
 			
 		}
 		for(int key : dictionary.keySet() ) {
-			System.out.println("The later value for the key: " + key + " is: " + dictionary.get(key));
-			this.simpInNum *= (Math.pow(key, dictionary.get(key)));
+			this.simpInNum *= (Math.pow(key, dictionary.get(key))); //the inner number is equal to the prime**(leftover in hashmap)
 		}
 	}
 	public int getSimpInNum(){
@@ -45,6 +54,9 @@ public class Radical{
 	}
 	public int getSimpOutNum(){
 		return this.simpOutNum;
+	}
+	public int getInNum(){
+		return inNum;
 	}
 	
 }
