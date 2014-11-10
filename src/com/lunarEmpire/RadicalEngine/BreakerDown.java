@@ -48,11 +48,13 @@ public class BreakerDown {
 			return false;
 		}
 	}
+	/* Doubt that I need this method
 	private boolean isPrime(int number){
 		boolean isPrime = (new BigInteger(Integer.toString(number))).isProbablePrime(32);
 		return isPrime;
 		
 	}
+	*/
 	
 	public Map<Integer,Integer> getDictionary(){
 		return this.dictionary;
