@@ -11,7 +11,10 @@ public class PrimeDict {
 	
 	PrimeDict(int number){
 		this.setTopNum(number);
-		
+		createHashMap();
+	}
+	
+	private void createHashMap(){
 		//This loop creates the hashmap of primes up to half of the topNum
 		for(int i = 0;i < this.topNum/2; i++){
 			boolean isPrime = (new BigInteger(Integer.toString(i))).isProbablePrime(32);
@@ -21,7 +24,6 @@ public class PrimeDict {
 				continue;
 			}
 		}
-		
 	}
 	
 	public Map<Integer,Integer> getDict(){

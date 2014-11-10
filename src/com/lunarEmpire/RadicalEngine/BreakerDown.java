@@ -13,6 +13,10 @@ public class BreakerDown {
 		int runningNum = input;
 		//The loop that actually does the breakdown
 		for(int key : dictionary.keySet()){
+			
+			if(!isPrime(runningNum)){
+				break;
+			}
 			//can you factor out the key from the running number?
 			if(canFactor(runningNum,key)){
 				//yes, add a tally to the HashMap per the respective key
