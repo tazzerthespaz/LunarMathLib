@@ -13,7 +13,7 @@ public class Radical{
 	private boolean imaginary;
 	private Map<Integer, Integer> dictionary;
 	
-	Radical(int inNum, int outNum){
+	Radical(int inNum, int outNum, int index){
 		this.inNum = inNum;
 		this.outNum = outNum;
 		this.dictionary = new BreakerDown(inNum).getDictionary();
