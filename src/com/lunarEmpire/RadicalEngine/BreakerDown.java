@@ -12,26 +12,31 @@ public class BreakerDown {
 		
 		int runningNum = input;
 		//The loop that actually does the breakdown
-		for(int key : dictionary.keySet()){
-			//Thoughts: do i need the is prime? if it were prime wouldn't it jjust get tallied any way 
-			//then it would be properly represented in the hashtable
-			
-			/*
-			if(!isPrime(runningNum)){
-				break;
-			}
-			*/
-			
-			//can you factor out the key from the running number?
-			if(canFactor(runningNum,key)){
-				//yes, add a tally to the HashMap per the respective key
-				runningNum = runningNum / key;
+		while(runningNum != 1){
+			for(int key : dictionary.keySet()){
+				//Thoughts: do i need the is prime? if it were prime wouldn't it jjust get tallied any way 
+				//then it would be properly represented in the hashtable
 				
-			}else{
-				//you can't factor it out, just keep going
-				continue;
-			}
+				/*
+				if(!isPrime(runningNum)){
+					break;
+				}
+				*/
+				
+				//can you factor out the key from the running number?
+				if(canFactor(runningNum,key)){
+					//yes, add a tally to the HashMap per the respective key
+					runningNum = runningNum / key;
+					dictionary.put(key,dictionary.get(key) + 1);
+					break;
+					
+				}else{
+					//you can't factor it out, just keep going
+					continue;
+				}
+			}	
 		}
+		
 	}
 	
 	private boolean canFactor(int number, int potFactor){
