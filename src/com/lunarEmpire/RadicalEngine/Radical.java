@@ -24,10 +24,12 @@ public class Radical{
 	private void simplify(){
 		//now to "pull" out pairs of numbers
 		//first have to iterate through the keys and their pairs
+		this.simpOutNum = this.outNum;
+		this.simpInNum = this.inNum;
 		for(int key : dictionary.keySet() ){
 			
 			if(dictionary.get(key) >= index ){ // If there is enough to take out a set
-				outNum = outNum * ((int)(dictionary.get(key) / index) * key); // the outer number is multiplied by the taken out values
+				simpOutNum = simpOutNum * ((int)(dictionary.get(key) / index) * key); // the outer number is multiplied by the taken out values
 				dictionary.put(key, (int)(dictionary.get(key) / index)); // the left over numbers that weren't taken out are left in the map
 
 			}
