@@ -9,8 +9,11 @@ public class BreakerDown {
 	
 	BreakerDown(int input){
 		this.input = input;
-		
-		int runningNum = input;
+		breakDown();
+	}
+	
+	private void breakDown(){
+		int runningNum = getInput();
 		//The loop that actually does the breakdown
 		while(runningNum != 1){
 			for(int key : dictionary.keySet()){
@@ -34,9 +37,8 @@ public class BreakerDown {
 					//you can't factor it out, just keep going
 					continue;
 				}
-			}	
+			}
 		}
-		
 	}
 	
 	private boolean canFactor(int number, int potFactor){
@@ -54,5 +56,9 @@ public class BreakerDown {
 	
 	public Map<Integer,Integer> getDictionary(){
 		return this.dictionary;
+	}
+	
+	public int getInput(){
+		return this.input;
 	}
 }
