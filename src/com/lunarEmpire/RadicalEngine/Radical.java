@@ -16,6 +16,7 @@ public class Radical{
 	Radical(int inNum, int outNum, int index){
 		this.inNum = inNum;
 		this.outNum = outNum;
+		this.index = index;
 		this.dictionary = new BreakerDown(inNum).getDictionary();
 		simplify();
 	}
