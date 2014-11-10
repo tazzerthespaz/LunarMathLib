@@ -25,17 +25,19 @@ public class Radical{
 		//now to "pull" out pairs of numbers
 		//first have to iterate through the keys and their pairs
 		this.simpOutNum = this.outNum;
-		this.simpInNum = this.inNum;
+		this.simpInNum = 1;
 		for(int key : dictionary.keySet() ){
 			
 			if(dictionary.get(key) >= index ){ // If there is enough to take out a set
-				simpOutNum = simpOutNum * ((int)(dictionary.get(key) / index) * key); // the outer number is multiplied by the taken out values
-				dictionary.put(key, (int)(dictionary.get(key) / index)); // the left over numbers that weren't taken out are left in the map
-
+				simpOutNum = (int) (simpOutNum * (Math.pow(key,(int)(dictionary.get(key) / index)))); // the outer number is multiplied by the taken out values
+				System.out.println("The value for the key: " + key + " is: " + dictionary.get(key));
+				dictionary.put(key,dictionary.get(key) - (int)(dictionary.get(key) / index) * index); // the left over numbers that weren't taken out are left in the map
 			}
+			
 		}
 		for(int key : dictionary.keySet() ) {
-			this.simpInNum *= (dictionary.get(key) * key);
+			System.out.println("The later value for the key: " + key + " is: " + dictionary.get(key));
+			this.simpInNum *= (Math.pow(key, dictionary.get(key)));
 		}
 	}
 	public int getSimpInNum(){
