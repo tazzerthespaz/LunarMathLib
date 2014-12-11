@@ -1,4 +1,0 @@
-Need to Do:
-	~Read in the prime array from file
-	~In Radical.java make the methods use a reversed prime_list instead of a premade one
-	~Re-Write variable names and method names to fit the snakeEye convention
