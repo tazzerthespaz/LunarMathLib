@@ -10,6 +10,7 @@ public class EngineTester {
 		Radical testRad = new Radical(-24 , 1, 2);
 		System.out.println(testRad.getSimpInNum());
 		System.out.println(testRad.getSimpOutNum());
+		System.out.println(testRad.isImaginary());
 		
 	}
 

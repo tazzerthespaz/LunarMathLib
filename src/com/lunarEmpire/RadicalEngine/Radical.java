@@ -63,5 +63,8 @@ public class Radical{
 	public int getInNum(){
 		return inNum;
 	}
+	public boolean isImaginary() {
+		return imaginary;
+	}
 	
 }
