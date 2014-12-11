@@ -13,10 +13,12 @@ public class Radical{
 	
 	Radical(int inNum, int outNum, int index){
 		//See if its imaginary
+		boolean needsChange = false;
 
         if(inNum < 0) {
             if (index % 2 != 0) {
                 imaginary = false;
+                needsChange = true;
             }else {
                 imaginary = true;
             }
@@ -35,6 +37,10 @@ public class Radical{
 		//create the the hashmap with everything already factored out
 		this.dictionary = new BreakerDown(inNum).getDictionary();
 		simplify();
+		if(needsChange) {
+			simpOutNum *= -1;
+		}
+		
 	}
 	
 	private void simplify(){
