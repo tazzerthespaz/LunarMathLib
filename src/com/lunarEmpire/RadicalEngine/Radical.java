@@ -13,12 +13,17 @@ public class Radical{
 	
 	Radical(int inNum, int outNum, int index){
 		//See if its imaginary
-		if((inNum < 0) && (index % 2 != 0)) {
-			imaginary = false;
-			
-		}else{
-			imaginary = true;
-		}
+
+        if(inNum < 0) {
+            if (index % 2 != 0) {
+                imaginary = false;
+            }else {
+                imaginary = true;
+            }
+        }else {
+            imaginary = false;
+        }
+
 		//avoid an infinite loop by making the number positive
 		if(inNum < 0){
 			inNum *= -1;
