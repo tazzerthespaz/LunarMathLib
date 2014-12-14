@@ -16,7 +16,7 @@ public class PrimeDict {
 	
 	private void createHashMap(){
 		//This loop creates the hashmap of primes up to half of the topNum
-		for(int i = 0;i < this.topNum/2; i++){
+		for(int i = 0;i <= this.topNum/2; i++){
 			boolean isPrime = (new BigInteger(Integer.toString(i))).isProbablePrime(32);
 			if(isPrime) {
 				this.dict.put(i,0);
