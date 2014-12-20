@@ -1,4 +1,4 @@
-package lunarEmpire.math.Radical;
+package lunarEmpire.math.radical;
 
 import java.math.BigInteger;
 import java.util.HashMap;
