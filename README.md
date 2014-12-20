@@ -1,4 +1,4 @@
-RootEngine
+RotEngine
 ==========
 
-The computation class for my root app
+A library to simplify Radicals with support for various indicies and imaginary numbers.
