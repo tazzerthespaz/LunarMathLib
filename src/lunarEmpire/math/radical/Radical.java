@@ -2,6 +2,16 @@ package lunarEmpire.math.radical;
 
 import java.util.Map;
 
+/**
+ * The class that simplifies all radicals.
+ * <p>
+ * Class takes input as an inner number, outter number, and an index where it simplifies these numbers in the constructor.
+ * To use the class create a new instance and call the getSimpInNum() and getSimpOutNum() methods which will return the simplified
+ * values of the radical. 
+ * 
+ * @author Malcolm Boyd
+ *
+ */
 public class Radical{
 	private int inNum;
 	private int outNum;
@@ -10,7 +20,14 @@ public class Radical{
 	private int simpOutNum;
 	private boolean imaginary;
 	private Map<Integer, Integer> dictionary;
-	
+	/**
+	 * The constructor for Radical class that fills object's fields and simplifies the a radical.
+	 *  
+	 * Runs the simplify method and fills all fields
+	 * @param inNum
+	 * @param outNum
+	 * @param index
+	 */
 	Radical(int inNum, int outNum, int index){
 		//See if its imaginary
 		boolean needsChange = false;
@@ -60,15 +77,32 @@ public class Radical{
 			this.simpInNum *= (Math.pow(key, dictionary.get(key))); //the inner number is equal to the prime**(leftover in hashmap)
 		}
 	}
+	/**
+	 * Returns the simplified inner number of a Radical.
+	 * 
+	 * @return int of the simplified inner number
+	 */
 	public int getSimpInNum(){
 		return this.simpInNum;
 	}
+	/**
+	 * Returns the simplified outter number of a Radical
+	 * @return int of the simplified outter number
+	 */
 	public int getSimpOutNum(){
 		return this.simpOutNum;
 	}
+	/**
+	 * Returns the non-simplified inner number
+	 * @return int of the non simplified inner number
+	 */
 	public int getInNum(){
 		return inNum;
 	}
+	/**
+	 * Returns whether or not the radical is an imaginary number
+	 * @return boolean imaginary
+	 */
 	public boolean isImaginary() {
 		return imaginary;
 	}
