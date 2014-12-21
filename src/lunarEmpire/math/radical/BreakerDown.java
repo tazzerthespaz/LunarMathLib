@@ -2,7 +2,7 @@ package lunarEmpire.math.radical;
 
 import java.util.Map;
 
-public class BreakerDown {
+class BreakerDown {
 	private int input;
 	private Map<Integer,Integer> dictionary;
 	
