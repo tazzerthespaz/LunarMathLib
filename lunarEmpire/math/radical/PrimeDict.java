@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
-class PrimeDict {
+public class PrimeDict {
 	//this class will take an input and return a hashmap of primes up to half that number
 	private int topNum;
 	private Map<Integer,Integer> dict = new HashMap<Integer,Integer>();
