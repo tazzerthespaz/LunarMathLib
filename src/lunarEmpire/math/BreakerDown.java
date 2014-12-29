@@ -1,4 +1,4 @@
-package lunarEmpire.math.Radical;
+package lunarEmpire.math;
 
 import java.util.Map;
 
