@@ -3,7 +3,7 @@ package lunarEmpire.math;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
-/
+
 /**
  * Class that creates a list of primes up to a specified number.
  * @author Malcolm Boyd
