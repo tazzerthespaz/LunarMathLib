@@ -2,10 +2,21 @@ package lunarEmpire.math;
 
 import java.util.Map;
 
+/**
+ * Class that creates the Prime factorization of a number.
+ * @author Malcolm Boyd
+ *
+ */
+
 public class BreakerDown {
 	private int input;
 	private Map<Integer,Integer> dictionary;
 	
+	/**
+	 *Constructor populates fields and creates the prime factorization.
+	 *<p>After creating the object call getDictionary() to get the Map
+	 * @param input
+	 */
 	public BreakerDown(int input){
 		this.input = input;
 		this.dictionary = new PrimeDict(input).getDict();
@@ -55,11 +66,19 @@ public class BreakerDown {
 		
 	}
 	*/
+	/**
+	 * Return the prime factorization map.
+	 * @return Map<Integer,Integer> The prime factorization map
+	 */
 	
 	public Map<Integer,Integer> getDictionary(){
 		return this.dictionary;
 	}
 	
+	/**
+	 * Return the number the class is breaking down.
+	 * @return input The number that the class is breaking down
+	 */
 	public int getInput(){
 		return this.input;
 	}
