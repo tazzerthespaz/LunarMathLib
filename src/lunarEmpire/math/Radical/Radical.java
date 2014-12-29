@@ -28,7 +28,7 @@ public class Radical{
 	 * @param outNum
 	 * @param index
 	 */
-	Radical(int inNum, int outNum, int index){ //Need too make public
+	public Radical(int inNum, int outNum, int index){ //Need too make public
 		//See if its imaginary
 		boolean needsChange = false;
 

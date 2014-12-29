@@ -9,7 +9,7 @@ public class PrimeDict {
 	private int topNum;
 	private Map<Integer,Integer> dict = new HashMap<Integer,Integer>();
 	
-	PrimeDict(int number){
+	public PrimeDict(int number){
 		this.setTopNum(number);
 		createHashMap();
 	}
