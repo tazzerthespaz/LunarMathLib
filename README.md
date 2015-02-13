@@ -1,4 +1,9 @@
-RootEngine
+LunarMathLib
 ==========
 
-A library to simplify Radicals with support for various indicies and imaginary numbers.
+A math library that currently has:
+    -Radicals
+    -Prime Factorization
+    -Quadratic Equations
+    -Roots (For the Quadratics)
+    -Fractions
