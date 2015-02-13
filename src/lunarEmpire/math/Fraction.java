@@ -111,4 +111,24 @@ public class Fraction {
 	public Fraction getReciprocal() {
 		return new Fraction(denominator, numerator);
 	}
+	
+	@Override
+	public boolean equals(Object obj) { 
+        if(this == obj) {
+            return true;
+        }
+        if(!(obj instanceof Fraction)) {
+            return false
+        }
+        if(obj != null) {
+			Fraction newObj = (Fraction) obj;
+			if((this.numerator == newObj.numerator) && (this.denominator == newObj.denominator)) {
+				return true;
+			}else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 }
