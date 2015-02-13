@@ -92,4 +92,12 @@ public class Fraction {
 	public static Fraction multiply(Fraction fracOne, Fraction fracTwo) { // Need a unit test
 		return new Fraction(fracOne.getNumerator() * fracTwo.getNumerator(), fracOne.getDenominator() * fracTwo.getDenominator());
 	}
+	
+	public static Fraction divide(Fraction fracOne, Fraction fracTwo) {
+		return Fraction.multiply(fracOne, fracTwo.getReciprocal());
+	}
+	
+	public Fraction getReciprocal() {
+		return new Fraction(denominator, numerator);
+	}
 }
