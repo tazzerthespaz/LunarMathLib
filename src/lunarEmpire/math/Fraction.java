@@ -89,6 +89,17 @@ public class Fraction {
 		
 	}
 	
+	public static Fraction subtract(Fraction fracOne, Fraction fracTwo) {
+		//Should initially be similar to the add class
+		int fracOneNumer = fracOne.getNumerator() * fracTwo.getDenominator();
+		int fracTwoNumer = fracTwo.getNumerator() * fracOne.getDenominator();
+		
+		int newNumer = fracOneNumer - fracTwoNumer;
+		int newDenom = fracOne.getDenominator() * fracTwo.getDenominator();
+		
+		return new Fraction(newNumer, newDenom);
+	}
+	
 	public static Fraction multiply(Fraction fracOne, Fraction fracTwo) { // Need a unit test
 		return new Fraction(fracOne.getNumerator() * fracTwo.getNumerator(), fracOne.getDenominator() * fracTwo.getDenominator());
 	}
