@@ -10,11 +10,13 @@ public class Quadratic {
 	private int a;
 	private int b;
 	private int c;
+	private Root roots;
 	
 	Quadratic(int a, int b, int c) {
 		setA(a);
 		setB(b);
 		setC(c);
+		calcRoots();
 	}
 	
 	
@@ -32,10 +34,11 @@ public class Quadratic {
 		return (b * -1) / (double)(2 * a); 
 	}
 	
-	public Root getRoots() { //Need Unit test
-		//Create Root Class need to solve for the roots here
-		Root roots = new Root(b * -1,b * b - (4 * a * c), 2 * a); //pass in the e , f , and g -b +- sqrt(b**2 - 4ac) //2a
-		return roots;
+	public void calcRoots() {
+		int offset = b * -1;
+		int radicand = b * b - (4 * a * c);
+		int denominator = 2 * a;
+		roots = new Root(offset, radicand, denominator);
 	}
 	
 	public double getPoint(double x) {
@@ -69,4 +72,9 @@ public class Quadratic {
 	public int getC() {
 		return this.c;
 	}
+
+	public Root getRoots() {
+		return roots;
+	}
 }
+
