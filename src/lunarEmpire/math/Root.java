@@ -11,25 +11,36 @@ public class Root extends Fraction {
 	private int offset;
 	private int radicand;
 	private Radical radical;
-	private double positiveDecimal;
-	private double negativeDecimal;
+	private Double positiveDecimal;
+	private Double negativeDecimal;
+	private boolean isImaginary = false;
 	
 	
 	
 	public Root(int offset, int radicand, int denominator) {
 		super(1, denominator);
 		setNumerator(offset, new Radical(radicand, 1, 2));
+		if(radical.isImaginary()) {
+			isImaginary = true;
+		}
 		calcDecimal();
+		
 	}
 	
 
 	private void calcDecimal() {
-		double posNumer = (double)offset + radical.getPosDecimal();
-		double negNumer = (double)offset  + radical.getNegDecimal();
-		
-		positiveDecimal = posNumer / (double)denominator;
-		negativeDecimal = negNumer / (double)denominator;
-		
+		//Cant add if imaginary!!!!!
+		if(!isImaginary){
+			double posNumer = (double)offset + radical.getPosDecimal();
+			double negNumer = (double)offset  + radical.getNegDecimal();
+			
+			positiveDecimal = posNumer / (double)denominator;
+			negativeDecimal = negNumer / (double)denominator;
+			
+		}else {
+			positiveDecimal = null;
+			negativeDecimal = null;
+		}
 	}
 	
 	public void setOffset(int offset) {
@@ -56,6 +67,11 @@ public class Root extends Fraction {
 	public int getRadicand() {
 		return radicand;
 	}
+	
+	public boolean getImaginary() {
+		return isImaginary;
+	}
+	
 	
 	@Override
 	public boolean equals(Object obj) {
