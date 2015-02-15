@@ -20,6 +20,7 @@ public class Radical{
 	private int simpOutNum;
 	private boolean imaginary;
 	private Map<Integer, Integer> dictionary;
+	private double decimal;
 	/**
 	 * The constructor for Radical class that fills object's fields and simplifies the a radical.
 	 *  
@@ -57,6 +58,7 @@ public class Radical{
 		if(needsChange) {
 			simpOutNum *= -1;
 		}
+		setDecimal();
 		
 	}
 	
@@ -76,6 +78,19 @@ public class Radical{
 		for(int key : dictionary.keySet() ) {
 			this.simpInNum *= (Math.pow(key, dictionary.get(key))); //the inner number is equal to the prime**(leftover in hashmap)
 		}
+	}
+	
+	// Really need unit test for the below
+	private double setDecimal() {
+		return getSimpOutNum() * (Math.pow(getSimpInNum(), index));
+	}
+	
+	public double getPosDecimal() {
+		return decimal;
+	}
+	
+	public double getNegDecimal() {
+		return decimal * -1;
 	}
 	/**
 	 * Returns the simplified inner number of a Radical.
