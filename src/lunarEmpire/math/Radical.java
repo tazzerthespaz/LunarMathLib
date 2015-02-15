@@ -80,7 +80,6 @@ public class Radical{
 		}
 	}
 	
-	// Really need unit test for the below
 	
 	private void setDecimal() {
 		decimal = getSimpOutNum() * (Math.pow(getSimpInNum(), 1/(double)index));
