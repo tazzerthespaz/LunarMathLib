@@ -17,7 +17,6 @@ public class Root extends Fraction {
 	public Root(int offset, int radicand, int denominator) {
 		super(1, denominator);
 		setNumerator(offset, new Radical(radicand, 1, 2));
-		
 	}
 	
 	public void setOffset(int offset) {

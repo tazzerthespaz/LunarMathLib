@@ -118,17 +118,13 @@ public class Fraction {
             return true;
         }
         if(!(obj instanceof Fraction)) {
-            return false
+            return false;
         }
-        if(obj != null) {
-			Fraction newObj = (Fraction) obj;
-			if((this.numerator == newObj.numerator) && (this.denominator == newObj.denominator)) {
-				return true;
-			}else {
-				return false;
-			}
-		} else {
-			return false;
+        Fraction newObj = (Fraction) obj;
+        if((this.numerator == newObj.numerator) && (this.denominator == newObj.denominator)) {
+        	return true;
+        }else {
+        	return false;
 		}
 	}
 }
