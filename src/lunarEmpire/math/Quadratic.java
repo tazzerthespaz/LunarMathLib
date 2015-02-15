@@ -1,10 +1,11 @@
 package lunarEmpire.math;
 /**
- * 
- * @author Malcolm
+ * Class for working with quadratic equations
+ * @author Malcolm Boyd
  *
  */
 
+// y = ax**2 + bx + c
 public class Quadratic {
 	private int a;
 	private int b;
@@ -37,8 +38,13 @@ public class Quadratic {
 		return roots;
 	}
 	
+	public double getPoint(double x) {
+		double y = getA() * (Math.pow(x, 2)) + b * x + c;
+		return y;
+	}
+	
 	//All of the getter and setters
-	public void setA(int a) {
+ 	public void setA(int a) {
 		if(a != 0) {
 			this.a = a;
 		}	
