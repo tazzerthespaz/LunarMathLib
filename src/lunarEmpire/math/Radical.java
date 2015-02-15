@@ -86,10 +86,18 @@ public class Radical{
 		decimal = getSimpOutNum() * (Math.pow(getSimpInNum(), 1/(double)index));
 	}
 	
+	/**
+	 * Returns the positive decimal representation of the radical
+	 * @return double PositiveDecimal
+	 */
 	public double getPosDecimal() {
 		return decimal;
 	}
 	
+	/**
+	 * Returns the Negative Representation of the radical
+	 * @return double NegativeDecimal
+	 */
 	public double getNegDecimal() {
 		return decimal * -1;
 	}
