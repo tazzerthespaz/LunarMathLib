@@ -23,14 +23,20 @@ public class Fraction {
 		 * return it
 		 * NEED TO DO A UNIT TEST ON THIS
 		 */
+		boolean positive = true;
+		if(origNumerator < 0) { //Quickly modify it to make it positive for simplification. . .change back later
+			positive = false;
+			origNumerator *= -1;
+		}
 		int highestFactor = 1;
 		for(int possFactor = origNumerator;possFactor > 0; possFactor--) {
 			if((origNumerator % possFactor == 0) && (origDenominator % possFactor == 0)) {
 				highestFactor = possFactor;
 				break;
 			}
-			
-			
+		}
+		if(!positive) {
+			origNumerator *= -1;
 		}
 		setNumerator(this.origNumerator / highestFactor);
 		setDenominator(this.origDenominator / highestFactor);
