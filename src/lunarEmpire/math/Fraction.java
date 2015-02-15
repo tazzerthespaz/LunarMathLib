@@ -21,7 +21,6 @@ public class Fraction {
 		 * For loop from top to bottom finding the largest common factor
 		 * divide each by that factor
 		 * return it
-		 * NEED TO DO A UNIT TEST ON THIS
 		 */
 		boolean positive = true;
 		if(origNumerator < 0) { //Quickly modify it to make it positive for simplification. . .change back later
