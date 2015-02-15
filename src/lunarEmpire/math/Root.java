@@ -45,4 +45,15 @@ public class Root extends Fraction {
 		this.radical = rad;
 	}
 	
+	public double getPositiveDecimal() {
+		return positiveDecimal;
+	}
+	
+	public double getNegativeDecimal() {
+		return negativeDecimal;
+	}
+	
+	public int getRadicand() {
+		return radicand;
+	}
 }
