@@ -15,7 +15,7 @@ public class Fraction {
 		setDecimal((double)numerator/(double)denominator);
 	}
 	
-	private void simplify(){ //Need a unit test
+	private void simplify(){
 		/**
 		 * Algorithm:
 		 * For loop from top to bottom finding the largest common factor
@@ -72,7 +72,7 @@ public class Fraction {
 		this.decimal = decimal;
 	}
 	
-	public static Fraction add(Fraction fracOne, Fraction fracTwo) { //Need a unit test
+	public static Fraction add(Fraction fracOne, Fraction fracTwo) { 
 		/*
 		 * Get common denominators
 		 * add numerators to get a new fraction
@@ -100,7 +100,7 @@ public class Fraction {
 		return new Fraction(newNumer, newDenom);
 	}
 	
-	public static Fraction multiply(Fraction fracOne, Fraction fracTwo) { // Need a unit test
+	public static Fraction multiply(Fraction fracOne, Fraction fracTwo) { 
 		return new Fraction(fracOne.getNumerator() * fracTwo.getNumerator(), fracOne.getDenominator() * fracTwo.getDenominator());
 	}
 	
