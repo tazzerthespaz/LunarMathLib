@@ -56,4 +56,20 @@ public class Root extends Fraction {
 	public int getRadicand() {
 		return radicand;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		if(!(obj instanceof Root)) {
+	            return false;
+		}
+		Root newRoot = (Root)obj;
+		if(this.getPositiveDecimal() == newRoot.getPositiveDecimal() && this.getNegativeDecimal() == newRoot.getNegativeDecimal()) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
