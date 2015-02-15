@@ -81,8 +81,9 @@ public class Radical{
 	}
 	
 	// Really need unit test for the below
-	private double setDecimal() {
-		return getSimpOutNum() * (Math.pow(getSimpInNum(), index));
+	
+	private void setDecimal() {
+		decimal = getSimpOutNum() * (Math.pow(getSimpInNum(), 1/(double)index));
 	}
 	
 	public double getPosDecimal() {
@@ -120,6 +121,14 @@ public class Radical{
 	 */
 	public boolean isImaginary() {
 		return imaginary;
+	}
+	
+	/**
+	 * Returns the index of the Radical
+	 * @return int index
+	 */
+	public int getIndex() { 
+		return index;
 	}
 	
 }
