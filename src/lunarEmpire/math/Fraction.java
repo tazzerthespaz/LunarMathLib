@@ -72,6 +72,11 @@ public class Fraction {
 		this.decimal = decimal;
 	}
 	
+	public double getDecimal() {
+		return decimal;
+	}
+	
+
 	public static Fraction add(Fraction fracOne, Fraction fracTwo) { 
 		/*
 		 * Get common denominators
