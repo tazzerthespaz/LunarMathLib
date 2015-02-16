@@ -41,7 +41,7 @@ public class Fraction {
 		setDenominator(this.origDenominator / highestFactor);
 			
 	}
-	
+
 	public int[] getFraction() {
 		int[] fraction = {numerator, denominator};	
 		return fraction;
@@ -136,5 +136,10 @@ public class Fraction {
         }else {
         	return false;
 		}
+	}
+	@Override
+	public String toString() {
+		String fractionString = String.valueOf(numerator) + " / " + String.valueOf(denominator);
+		return fractionString;
 	}
 }
