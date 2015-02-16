@@ -87,6 +87,29 @@ public class Root extends Fraction {
 		return isImaginary;
 	}
 	
+	public boolean isSimplified(){
+		if(simpOffset == null) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	public String positiveToString() {
+		if(isSimplified()) {
+			return simpOffset.toString() + simpOuterNumber.toString() + " + √(" + radical.getSimpInNum() + ")";
+		} else {
+			return "";
+		}
+	}
+	
+	public String negativeToString() {
+		if(isSimplified()) {
+			return simpOffset.toString() + simpOuterNumber.toString() + " - √(" + radical.getSimpInNum() + ")";
+		} else {
+			return "";
+		}
+	}
 	
 	@Override
 	public boolean equals(Object obj) {
