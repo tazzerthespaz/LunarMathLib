@@ -97,7 +97,7 @@ public class Root extends Fraction {
 	
 	public String positiveToString() {
 		if(isSimplified()) {
-			return simpOffset.toString() + simpOuterNumber.toString() + " + √(" + radical.getSimpInNum() + ")";
+			return simpOffset.toString() + " +" + simpOuterNumber.toString() + "√(" + radical.getSimpInNum() + ")";
 		} else {
 			return "";
 		}
@@ -105,7 +105,7 @@ public class Root extends Fraction {
 	
 	public String negativeToString() {
 		if(isSimplified()) {
-			return simpOffset.toString() + simpOuterNumber.toString() + " - √(" + radical.getSimpInNum() + ")";
+			return simpOffset.toString() + " -" + simpOuterNumber.toString() + "√(" + radical.getSimpInNum() + ")";
 		} else {
 			return "";
 		}
