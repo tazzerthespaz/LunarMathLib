@@ -139,7 +139,13 @@ public class Fraction {
 	}
 	@Override
 	public String toString() {
-		String fractionString = String.valueOf(numerator) + " / " + String.valueOf(denominator);
-		return fractionString;
+		if(denominator != 1){
+			String fractionString = String.valueOf(numerator) + " / " + String.valueOf(denominator);
+			return fractionString;
+		}else {
+			String fractionString = String.valueOf(numerator);
+			return fractionString;
+		}
+		
 	}
 }
