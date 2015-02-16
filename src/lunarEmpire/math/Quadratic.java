@@ -12,7 +12,7 @@ public class Quadratic {
 	private int c;
 	private Root roots;
 	
-	Quadratic(int a, int b, int c) {
+	public Quadratic(int a, int b, int c) {
 		setA(a);
 		setB(b);
 		setC(c);
