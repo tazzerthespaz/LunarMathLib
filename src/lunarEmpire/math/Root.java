@@ -14,6 +14,8 @@ public class Root extends Fraction {
 	private Double positiveDecimal;
 	private Double negativeDecimal;
 	private boolean isImaginary = false;
+	private Fraction simpOffset;
+	private Fraction simpOuterNumber;
 	
 	
 	
@@ -24,6 +26,7 @@ public class Root extends Fraction {
 			isImaginary = true;
 		}
 		calcDecimal();
+		simplify();
 		
 	}
 	
@@ -41,6 +44,18 @@ public class Root extends Fraction {
 			positiveDecimal = null;
 			negativeDecimal = null;
 		}
+	}
+	
+	private void simplify(){
+		Fraction offSetFrac = new Fraction(offset,denominator);
+		Fraction outerNumFrac = new Fraction(radical.getSimpOutNum(), denominator);
+		
+		
+		if(offSetFrac.getNumerator() != offset || outerNumFrac.getNumerator() != radical.getSimpOutNum()) { //If Anything has changed
+			simpOffset = offSetFrac;
+			simpOuterNumber = outerNumFrac;
+		}
+		
 	}
 	
 	public void setOffset(int offset) {
