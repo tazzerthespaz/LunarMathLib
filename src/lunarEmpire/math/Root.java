@@ -21,15 +21,29 @@ public class Root extends Fraction {
 	
 	public Root(int offset, int radicand, int denominator) {
 		super(1, denominator);
+		printDetails();
 		setNumerator(offset, new Radical(radicand, 1, 2));
+		printDetails();
 		if(radical.isImaginary()) {
 			isImaginary = true;
 		}
+		printDetails();
 		calcDecimal();
+		printDetails();
 		simplify();
-		
+		printDetails();
 	}
 	
+	public void printDetails() {
+		System.out.println("Details: ");
+		System.out.println("    Offset: " + offset);
+		System.out.println("    Radicand: " + radicand);
+		System.out.println("    positiveDecimal: " + positiveDecimal);
+		System.out.println("    negativeDecimal: " + negativeDecimal);
+		System.out.println("    isImaginary:" + isImaginary);
+		System.out.println("    simpOffset:" + simpOffset);
+		System.out.println("    simpOuterNumber:" + simpOuterNumber);
+	}
 
 	private void calcDecimal() {
 		//Cant add if imaginary!!!!!
@@ -50,11 +64,13 @@ public class Root extends Fraction {
 		Fraction offSetFrac = new Fraction(offset,denominator);
 		Fraction outerNumFrac = new Fraction(radical.getSimpOutNum(), denominator);
 		
-		
-		if(offSetFrac.getNumerator() != offset || outerNumFrac.getNumerator() != radical.getSimpOutNum()) { //If Anything has changed
-			simpOffset = offSetFrac;
-			simpOuterNumber = outerNumFrac;
-		}
+//		
+//		if(offSetFrac.getNumerator() != offset || outerNumFrac.getNumerator() != radical.getSimpOutNum()) { //If Anything has changed
+//			simpOffset = offSetFrac;
+//			simpOuterNumber = outerNumFrac;
+//		}
+		simpOffset = offSetFrac;
+		simpOuterNumber = outerNumFrac;
 		
 	}
 	
