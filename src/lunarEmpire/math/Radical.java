@@ -10,7 +10,7 @@ import java.util.Map;
  * values of the radical. 
  * 
  * @author Malcolm Boyd
- *
+ * @version 1.0
  */
 public class Radical{
 	private int inNum;

@@ -1,5 +1,10 @@
 package lunarEmpire.math;
-
+/**
+ * Class that represents a fraction. 
+ * Can perform simple maniputlations such as simplifying, multiplcation,addition, and subtraction
+ * @author Malcolm Boyd
+ * @version 1.0
+ **/
 public class Fraction {
 	int origNumerator;
 	int origDenominator;
@@ -7,7 +12,12 @@ public class Fraction {
 	int denominator;
 	double decimal;
 	
-	
+/**
+ * The constructor for a fraction.
+ * Automatically sets the original numbers, simplifies, and sets the decimal.
+ * @param numerator The numerator of the fraction.
+ * @param denominator The denominator of the fraction.
+ */
 	public Fraction (int numerator, int denominator) {
 		setOrigNum(numerator);
 		setOrigDenom(denominator);
@@ -16,7 +26,7 @@ public class Fraction {
 	}
 	
 	private void simplify(){
-		/**
+		/*
 		 * Algorithm:
 		 * For loop from top to bottom finding the largest common factor
 		 * divide each by that factor
@@ -42,15 +52,30 @@ public class Fraction {
 			
 	}
 
+    /**
+     * Returns an array representing a fraction, where the first element is the numerator, and the second the denominator.
+     *
+     * @return int[] An int array representing the fraction. 
+     **/
 	public int[] getFraction() {
 		int[] fraction = {numerator, denominator};	
 		return fraction;
 	}
 	
+    /**
+     * Returns the denominator of the fraction.
+     *
+     * @return int The denominator.
+     **/
 	public int getDenominator() {
 		return denominator;
 	}
 	
+    /**
+     * Return the numerator of the fraction.
+     *
+     * @return int The denominator.
+     **/
 	public int getNumerator() {
 		return numerator;
 	}
@@ -77,11 +102,23 @@ public class Fraction {
 		this.decimal = decimal;
 	}
 	
+    /**
+     * Return the decimal representation of the fraction.
+     *
+     * @return double The decimal of the fraction.
+     **/
 	public double getDecimal() {
 		return decimal;
 	}
 	
-
+    /**
+     * Method returning the sum of two fractions.
+     *
+     * @param fracOne The first fraction.
+     * @param fracTwo The second fraction.
+     *
+     * @return Fraction The sum of the parameters.
+     **/
 	public static Fraction add(Fraction fracOne, Fraction fracTwo) { 
 		/*
 		 * Get common denominators
@@ -99,6 +136,14 @@ public class Fraction {
 		
 	}
 	
+    /**
+     * Method that subracts two fractions.
+     *
+     * @param fracOne The first fraction to be subtracted from.
+     * @param fracTwo The second fraction to be taken away.
+     *
+     * @return Fraction The new fraction of fracOne - fracTwo.
+     **/
 	public static Fraction subtract(Fraction fracOne, Fraction fracTwo) {
 		//Should initially be similar to the add class
 		int fracOneNumer = fracOne.getNumerator() * fracTwo.getDenominator();
@@ -110,14 +155,33 @@ public class Fraction {
 		return new Fraction(newNumer, newDenom);
 	}
 	
+    /**
+     * Method that multiplies two fractions.
+     * 
+     * @param fracOne The first fraction.
+     * @param fracTwo The second fraction.
+     *
+     * @return Fraction the product of the two fractions.
+     **/
 	public static Fraction multiply(Fraction fracOne, Fraction fracTwo) { 
 		return new Fraction(fracOne.getNumerator() * fracTwo.getNumerator(), fracOne.getDenominator() * fracTwo.getDenominator());
 	}
 	
+    /**
+     * Method that divides two fractions by multiplying by the reciprocal.
+     *
+     * @param fracOne The fraction the be divided from.
+     * @param fracTwo The fraction to be dividing.
+     **/
 	public static Fraction divide(Fraction fracOne, Fraction fracTwo) {
 		return Fraction.multiply(fracOne, fracTwo.getReciprocal());
 	}
 	
+    /**
+     * A method that gets the reciprocal of the fraction
+     *
+     * @return Fraction the reciprocal of the fraction.
+     **/
 	public Fraction getReciprocal() {
 		return new Fraction(denominator, numerator);
 	}
