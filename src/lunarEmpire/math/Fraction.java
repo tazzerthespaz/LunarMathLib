@@ -56,7 +56,7 @@ public class Fraction {
             origNumerInt *= -1; // Move back to negative. . . see earlier comment
         }
         setNumerator(this.origNumerInt / highestFactor);
-        setDenominator(this.origNumerInt / highestFactor);
+        setDenominator(this.origDenomInt / highestFactor);
 
     }
 
@@ -75,6 +75,7 @@ public class Fraction {
             powerOne++;
             tempNum1 = tempNum1.multiply(BigDecimal.TEN);
         }
+
         while(tempNum2.doubleValue() != (int)tempNum2.doubleValue()) {
             powerTwo++;
             tempNum2 = tempNum2.multiply(BigDecimal.TEN);
