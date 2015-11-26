@@ -1,5 +1,6 @@
 package lunarEmpire.math;
-//TODO test the new changes
+
+import java.math.BigDecimal;
 
 /**
  * Class that represents a fraction. 
@@ -15,13 +16,14 @@ public class Fraction {
     int numerator;
     int denominator;
     double decimal;
-    
-/**
- * The constructor for a fraction.
- * Automatically sets the original numbers, simplifies, and sets the decimal.
- * @param numerator The numerator of the fraction.
- * @param denominator The denominator of the fraction.
- */
+    String pow = "Test";    
+    /**
+     * The constructor for a fraction.
+     * Automatically sets the original numbers, simplifies, and sets the decimal.
+     * @param numerator Double. The numerator of the fraction.
+     * @param denominator Double. The denominator of the fraction.
+     */
+
     public Fraction (double numerator, double denominator) {
         setOrigNum(numerator);
         setOrigDenom(denominator);
@@ -29,7 +31,7 @@ public class Fraction {
         simplify();
         setDecimal(numerator/denominator);
     }
-    
+
     private void simplify(){
         /*
          * Algorithm:
@@ -44,7 +46,7 @@ public class Fraction {
             origNumerInt *= -1;
         }
         int highestFactor = 1;
-        for(int possFactor = origNumerInt;possFactor > 0; possFactor--) {
+        for(int possFactor = origNumerInt; possFactor > 0; possFactor--) {
             if((origNumerInt % possFactor == 0) && (origDenomInt % possFactor == 0)) {
                 highestFactor = possFactor;
                 break;
@@ -55,21 +57,38 @@ public class Fraction {
         }
         setNumerator(this.origNumerInt / highestFactor);
         setDenominator(this.origNumerInt / highestFactor);
-            
+
     }
 
     //TODO test this method and changes
     private void origToFractionInt() {
         //Convert a fraction of doubles to ints, makes the rest of the process easier
         //Multiplies times ten until bottom and top are ints
-        double topNum = this.origNumerator;
-        double bottomNum = this.origDenominator;
-        while(topNum != (int)topNum && bottomNum != (int)bottomNum) {
-            topNum *= 10;
-            bottomNum *= 10;
+        BigDecimal nnum = new BigDecimal(this.origNumerator);
+        BigDecimal nnum2 = new BigDecimal(this.origDenominator);
+        int powerOne = 0;
+        int powerTwo = 0;
+        BigDecimal tempNum1 = nnum;
+        BigDecimal tempNum2 = nnum2;
+
+        while(tempNum1.doubleValue() != (int)tempNum1.doubleValue()) {
+            powerOne++;
+            tempNum1 = tempNum1.multiply(BigDecimal.TEN);
         }
-        setOrigNumerInt((int)topNum);
-        setOrigDenomInt((int)bottomNum);
+        while(tempNum2.doubleValue() != (int)tempNum2.doubleValue()) {
+            powerTwo++;
+            tempNum2 = tempNum2.multiply(BigDecimal.TEN);
+        }
+
+        if(powerTwo > powerOne) {
+            nnum = nnum.multiply(new BigDecimal(Math.pow(10,(double)powerTwo)) );
+            nnum2 = nnum2.multiply((new BigDecimal( Math.pow(10.0,(double)powerTwo) )));
+        }else if(powerOne >= powerTwo) {
+            nnum = nnum.multiply(new BigDecimal(Math.pow(10,(double)powerOne)) );
+            nnum2 = nnum2.multiply((new BigDecimal( Math.pow(10.0,(double)powerOne) )));
+        }
+        this.origNumerInt = (int)nnum.doubleValue();
+        this.origDenomInt = (int)nnum2.doubleValue();
     }
 
     /**
@@ -81,7 +100,7 @@ public class Fraction {
         double[] fraction = {numerator, denominator};   
         return fraction;
     }
-    
+
     /**
      * Returns the denominator of the fraction.
      *
@@ -90,7 +109,7 @@ public class Fraction {
     public double getDenominator() {
         return denominator;
     }
-    
+
     /**
      * @return the origNumerInt
      */
@@ -124,32 +143,32 @@ public class Fraction {
      *
      * @return int The denominator.
      **/
-    public double getNumerator() {
+    public int getNumerator() {
         return numerator;
     }
-    
+
     private void setOrigNum(double num) {
         this.origNumerator = num;
     }
-    
+
     private void setOrigDenom(double denom) {
         this.origDenominator = denom;
     }
-    
-    private void setNumerator(double numerator) {
+
+    private void setNumerator(int numerator) {
         this.numerator = numerator;
     }
-    
-    private void setDenominator(double denominator) {
+
+    private void setDenominator(int denominator) {
         if(denominator != 0) {
             this.denominator = denominator;
         }
     }
-    
+
     private void setDecimal(double decimal) {
         this.decimal = decimal;
     }
-    
+
     /**
      * Return the decimal representation of the fraction.
      *
@@ -158,7 +177,7 @@ public class Fraction {
     public double getDecimal() {
         return decimal;
     }
-    
+
     /**
      * Method returning the sum of two fractions.
      *
@@ -174,16 +193,16 @@ public class Fraction {
          * run the static simplify
          * return
          */
-        int fracOneNumer = fracOne.getNumerator() * fracTwo.getDenominator();
-        int fracTwoNumer = fracTwo.getNumerator() * fracOne.getDenominator();
-        
-        int newNumer = fracOneNumer + fracTwoNumer;
-        int newDenom = fracOne.getDenominator() * fracTwo.getDenominator();
-        
+        double fracOneNumer = fracOne.getNumerator() * fracTwo.getDenominator();
+        double fracTwoNumer = fracTwo.getNumerator() * fracOne.getDenominator();
+
+        double newNumer = fracOneNumer + fracTwoNumer;
+        double newDenom = fracOne.getDenominator() * fracTwo.getDenominator();
+
         return new Fraction(newNumer, newDenom);
-        
+
     }
-    
+
     /**
      * Method that subracts two fractions.
      *
@@ -194,15 +213,15 @@ public class Fraction {
      **/
     public static Fraction subtract(Fraction fracOne, Fraction fracTwo) {
         //Should initially be similar to the add class
-        int fracOneNumer = fracOne.getNumerator() * fracTwo.getDenominator();
-        int fracTwoNumer = fracTwo.getNumerator() * fracOne.getDenominator();
-        
-        int newNumer = fracOneNumer - fracTwoNumer;
-        int newDenom = fracOne.getDenominator() * fracTwo.getDenominator();
-        
+        double fracOneNumer = fracOne.getNumerator() * fracTwo.getDenominator();
+        double fracTwoNumer = fracTwo.getNumerator() * fracOne.getDenominator();
+
+        double newNumer = fracOneNumer - fracTwoNumer;
+        double newDenom = fracOne.getDenominator() * fracTwo.getDenominator();
+
         return new Fraction(newNumer, newDenom);
     }
-    
+
     /**
      * Method that multiplies two fractions.
      * 
@@ -214,7 +233,7 @@ public class Fraction {
     public static Fraction multiply(Fraction fracOne, Fraction fracTwo) { 
         return new Fraction(fracOne.getNumerator() * fracTwo.getNumerator(), fracOne.getDenominator() * fracTwo.getDenominator());
     }
-    
+
     /**
      * Method that divides two fractions by multiplying by the reciprocal.
      *
@@ -224,7 +243,7 @@ public class Fraction {
     public static Fraction divide(Fraction fracOne, Fraction fracTwo) {
         return Fraction.multiply(fracOne, fracTwo.getReciprocal());
     }
-    
+
     /**
      * A method that gets the reciprocal of the fraction
      *
@@ -233,7 +252,7 @@ public class Fraction {
     public Fraction getReciprocal() {
         return new Fraction(denominator, numerator);
     }
-    
+
     @Override
     public boolean equals(Object obj) { 
         if(this == obj) {
@@ -251,13 +270,8 @@ public class Fraction {
     }
     @Override
     public String toString() {
-        if(denominator != 1){
-            String fractionString = String.valueOf(numerator) + " / " + String.valueOf(denominator);
-            return fractionString;
-        }else {
-            String fractionString = String.valueOf(numerator);
-            return fractionString;
-        }
-        
-    }
+        return "Original Numerator: " + origNumerator + "\nOriginal Denominator: " + origDenominator + 
+            "\nUnsimplified Numerator Int: " + origNumerInt + "\nUnsimplified Denominator Int: " + origDenomInt + 
+            "\nSimplified Numerator: " + numerator + "\nSimplified Denominator: " + denominator + "\nDecimal: " + decimal;
+    }   
 }
