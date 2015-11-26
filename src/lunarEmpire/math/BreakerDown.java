@@ -5,7 +5,6 @@ import java.util.Map;
 /**
  * Class that creates the Prime factorization of a number.
  * @author Malcolm Boyd
- *
  */
 
 public class BreakerDown {
