@@ -41,18 +41,19 @@ public class Root extends Fraction {
 	}
 	
     /**
-     * The method that acts as a toString()
+     * toString() returns a String representing the class's fields
+     * 
+     * @return String String of the class's instance fields.
      **/
-	public void printDetails() {
-		System.out.println("Details: ");
-		System.out.println("    Offset: " + offset);
-		System.out.println("    Radicand: " + radicand);
-		System.out.println("    positiveDecimal: " + positiveDecimal);
-		System.out.println("    negativeDecimal: " + negativeDecimal);
-		System.out.println("    isImaginary:" + isImaginary);
-		System.out.println("    simpOffset:" + simpOffset);
-		System.out.println("    simpOuterNumber:" + simpOuterNumber);
-	}
+	public String toString() {
+		return "Offset: " + offset +
+		    "\nRadicand: " + radicand +
+            "\npositiveDecimal: " + positiveDecimal +
+            "\nnegativeDecimal: " + negativeDecimal +
+            "\nisImaginary:" + isImaginary +
+            "\nsimpOffset:" + simpOffset +
+            "\nsimpOuterNumber:" + simpOuterNumber;
+    }
 
 	private void calcDecimal() {
 		//Cant add if imaginary!!!!!
