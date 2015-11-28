@@ -269,10 +269,15 @@ public class Fraction {
             return false;
         }
     }
-    @Override
-    public String toString() {
+
+    public String getDetails() {
         return "Original Numerator: " + origNumerator + "\nOriginal Denominator: " + origDenominator + 
             "\nUnsimplified Numerator Int: " + origNumerInt + "\nUnsimplified Denominator Int: " + origDenomInt + 
             "\nSimplified Numerator: " + numerator + "\nSimplified Denominator: " + denominator + "\nDecimal: " + decimal;
     }   
+    
+    @Override
+    public String toString() {
+        return numerator + "/" + denominator;
+    }
 }
