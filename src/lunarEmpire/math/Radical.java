@@ -138,4 +138,13 @@ public class Radical{
 		return index;
 	}
 	
+    /**
+     * <p> Method returning all of the publicly needed info for a print out of the class. Also known as a toString</p>
+     * @return String to be printed showing the fields of the class
+     **/
+    public String toString() {
+        return "Innner Number: " + inNum + "\nOutter Nummber: " + outNum + "\nIndex: " + index + 
+            "\nSimplified Inner Number: " + simpInNum + "\nSimplified Outter Number: " + simpOutNum + 
+            "\nDecimal: " + decimal + "\n Is Imaginary: " + imaginary;
+    }
 }
