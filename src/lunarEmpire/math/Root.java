@@ -38,11 +38,8 @@ public class Root extends Fraction {
 		if(radical.isImaginary()) {
 			isImaginary = true;
 		}
-		printDetails();
 		calcDecimal();
-		printDetails();
 		simplify();
-		printDetails();
 	}
 	
     /**
@@ -110,6 +107,7 @@ public class Root extends Fraction {
      *
      * @param offset Integer that is the offset
      * @param rad Radical that replaces the radical.
+     **/
 	public void setNumerator(int offset, Radical rad) {
 		setOffset(offset);
 		this.radical = rad;
