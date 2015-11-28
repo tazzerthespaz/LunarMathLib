@@ -13,7 +13,7 @@ public class Root extends Fraction {
  * 		   -------------------------
  * 		         denominator
  */
-	private int offset;
+	private Fraction offset;
 	private int radicand;
 	private Radical radical;
 	private Double positiveDecimal;
@@ -30,11 +30,9 @@ public class Root extends Fraction {
      * @param radicand An int that is inside the radical.
      * @param denominator The int inside the radical.
      **/
-	public Root(int offset, int radicand, int denominator) {
-		super(1, denominator);
-		printDetails();
+	public Root(Fraction offset, int radicand, double denominator) {
+		super(1.0, denominator);
 		setNumerator(offset, new Radical(radicand, 1, 2));
-		printDetails();
 		if(radical.isImaginary()) {
 			isImaginary = true;
 		}
@@ -59,8 +57,8 @@ public class Root extends Fraction {
 	private void calcDecimal() {
 		//Cant add if imaginary!!!!!
 		if(!isImaginary){
-			double posNumer = (double)offset + radical.getPosDecimal();
-			double negNumer = (double)offset  + radical.getNegDecimal();
+			double posNumer = offset.getDecimal() + radical.getPosDecimal();
+			double negNumer = offset.getDecimal()  + radical.getNegDecimal();
 			
 			positiveDecimal = posNumer / (double)denominator;
 			negativeDecimal = negNumer / (double)denominator;
@@ -72,7 +70,7 @@ public class Root extends Fraction {
 	}
 	
 	private void simplify(){
-		Fraction offSetFrac = new Fraction(offset,denominator);
+		Fraction offSetFrac = new Fraction(offset.getDecimal(),denominator);
 		Fraction outerNumFrac = new Fraction(radical.getSimpOutNum(), denominator);
 		
 //		
@@ -89,7 +87,7 @@ public class Root extends Fraction {
      * A method that sets of offset of the Root
      * @param offset Int that becomes the offset of the Root.
      **/
-	public void setOffset(int offset) {
+	public void setOffset(Fraction offset) {
 		this.offset = offset;
 	}
 	
@@ -108,7 +106,7 @@ public class Root extends Fraction {
      * @param offset Integer that is the offset
      * @param rad Radical that replaces the radical.
      **/
-	public void setNumerator(int offset, Radical rad) {
+	public void setNumerator(Fraction offset, Radical rad) {
 		setOffset(offset);
 		this.radical = rad;
 	}
@@ -169,7 +167,7 @@ public class Root extends Fraction {
      **/
 	public String positiveToString() {
 		if(isSimplified()) {
-			return simpOffset.toString() + " +" + simpOuterNumber.toString() + "√(" + radical.getSimpInNum() + ")";
+			return "(" + simpOffset + " +" + simpOuterNumber + "√(" + radical.getSimpInNum() + ")";
 		} else {
 			return "";
 		}
@@ -182,7 +180,7 @@ public class Root extends Fraction {
      **/
 	public String negativeToString() {
 		if(isSimplified()) {
-			return simpOffset.toString() + " -" + simpOuterNumber.toString() + "√(" + radical.getSimpInNum() + ")";
+			return simpOffset + " -" + simpOuterNumber + "√(" + radical.getSimpInNum() + ")";
 		} else {
 			return "";
 		}
