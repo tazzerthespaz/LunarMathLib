@@ -13,11 +13,11 @@ import java.util.Map;
  * @version 1.0
  */
 public class Radical{
-	private int inNum;
-	private int outNum;
+	private Fraction inNum;
+	private Fraction outNum;
 	private int index;
-	private int simpInNum;
-	private int simpOutNum;
+	private Fraction simpInNum;
+	private Fraction simpOutNum;
 	private boolean imaginary;
 	private Map<Integer, Integer> dictionary;
 	private double decimal;
@@ -61,6 +61,10 @@ public class Radical{
 		setDecimal();
 		
 	}
+
+    public Radical(double inNum, double outNum, int index) {
+        
+    }
 	
 	private void simplify(){
 		//now to "pull" out pairs of numbers
@@ -105,21 +109,21 @@ public class Radical{
 	 * 
 	 * @return int of the simplified inner number
 	 */
-	public int getSimpInNum(){
+	public Fraction getSimpInNum(){
 		return this.simpInNum;
 	}
 	/**
 	 * Returns the simplified outter number of a Radical
 	 * @return int of the simplified outter number
 	 */
-	public int getSimpOutNum(){
+	public Fraction getSimpOutNum(){
 		return this.simpOutNum;
 	}
 	/**
 	 * Returns the non-simplified inner number
 	 * @return int of the non simplified inner number
 	 */
-	public int getInNum(){
+	public Fraction getInNum(){
 		return inNum;
 	}
 	/**
