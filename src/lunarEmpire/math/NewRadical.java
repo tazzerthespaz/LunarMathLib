@@ -3,6 +3,16 @@ package lunarEmpire.math;
 import java.util.Map;
 import java.util.ArrayList;
 
+/**
+ * The class that simplifies all radicals.
+ * <p>
+ * Class takes input as an inner number, outter number, and an index where it simplifies these numbers in the constructor.
+ * To use the class create a new instance and call the getSimpInNum() and getSimpOutNum() methods which will return the simplified
+ * values of the radical. 
+ * 
+ * @author Malcolm Boyd
+ * @version 1.0
+ */
 public class NewRadical {
     //Lets get to work
     private double origInNum;
@@ -12,7 +22,15 @@ public class NewRadical {
     private Fraction unSimpOutNum;
     private int simpInNum;
     private Fraction simpOutNum;
-    
+
+ 	/**
+	 * The constructor for Radical class that fills object's fields and simplifies the a radical.
+	 *  
+	 * Runs the simplify method and fills all fields
+	 * @param inNum
+	 * @param outNum
+	 * @param index
+	 */   
     public NewRadical(double inNum, double outNum, int root) {
         //Set the class fields
         this.origInNum = inNum;
