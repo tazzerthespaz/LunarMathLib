@@ -1,6 +1,7 @@
 package lunarEmpire.math;
 
 import java.util.Map;
+import java.util.ArrayList;
 
 /**
  * The class that simplifies all radicals.
@@ -12,144 +13,154 @@ import java.util.Map;
  * @author Malcolm Boyd
  * @version 1.0
  */
-public class Radical{
-	private Fraction inNum;
-	private Fraction outNum;
-	private int index;
-	private Fraction simpInNum;
-	private Fraction simpOutNum;
-	private boolean imaginary;
-	private Map<Integer, Integer> dictionary;
-	private double decimal;
-	/**
+public class Radical {
+    //Lets get to work
+    private double origInNum;
+    private double origOutNum;
+    private int root;
+    private Fraction unSimpInNum;
+    private Fraction unSimpOutNum;
+    private int simpInNum;
+    private Fraction simpOutNum;
+
+ 	/**
 	 * The constructor for Radical class that fills object's fields and simplifies the a radical.
 	 *  
 	 * Runs the simplify method and fills all fields
 	 * @param inNum
 	 * @param outNum
 	 * @param index
-	 */
-	public Radical(int inNum, int outNum, int index){ //Need too make public
-		//See if its imaginary
-		boolean needsChange = false;
+	 */   
+    public Radical(double inNum, double outNum, int root) {
+        //Set the class fields
+        this.origInNum = inNum;
+        this.origOutNum = outNum;
+        this.unSimpInNum = new Fraction(inNum, 1);
+        this.unSimpOutNum = new Fraction(outNum, 1);
+        this.root = root;
+        calc();
+    }
 
-        if(inNum < 0) {
-            if (index % 2 != 0) {
-                imaginary = false;
-                needsChange = true;
-            }else {
-                imaginary = true;
-            }
-        }else {
-            imaginary = false;
-        }
+    //Do all calculations here
+    private void calc() {
+        Fraction workingInner = this.unSimpInNum;
+        Fraction workingOuter = this.unSimpOutNum;
 
-		//avoid an infinite loop by making the number positive
-		if(inNum < 0){
-			inNum *= -1;
-		}
-		
-		this.inNum = inNum;
-		this.outNum = outNum;
-		this.index = index;
-		//create the the hashmap with everything already factored out
-		this.dictionary = new BreakerDown(inNum).getDictionary();
-		simplify();
-		if(needsChange) {
-			simpOutNum *= -1;
-		}
-		setDecimal();
-		
-	}
+        //Step 1
+        ArrayList<Integer> intBottomWork = deRadBottom(workingInner);
 
-    public Radical(double inNum, double outNum, int index) {
+        //Combine the new denominator with the outer number
+        workingOuter = Fraction.multiply(workingOuter, new Fraction(1.0, (double)intBottomWork.get(1)));
+
+        //Step 2
+        int simpInner = intBottomWork.get(0);
+        ArrayList<Integer> simplifiedRad = simpIntRad(simpInner);
+
+        //Combine the new outernumbers
+        workingOuter = Fraction.multiply(workingOuter, new Fraction((double)simplifiedRad.get(1), 1.0));
+
+        
+        //Step 3 set the class fields to the new values
+        this.simpOutNum = workingOuter;
+        this.simpInNum = simplifiedRad.get(0);
         
     }
-	
-	private void simplify(){
-		//now to "pull" out pairs of numbers
-		//first have to iterate through the keys and their pairs
-		this.simpOutNum = this.outNum;
-		this.simpInNum = 1;
-		for(int key : dictionary.keySet() ){
-			
-			if(dictionary.get(key) >= index ){ // If there is enough to take out a set
-				simpOutNum = (int) (simpOutNum * (Math.pow(key,(int)(dictionary.get(key) / index)))); // the outer number is multiplied by the taken out groups of numbers
-				dictionary.put(key,dictionary.get(key) - (int)(dictionary.get(key) / index) * index); // the left over numbers that weren't taken out are left in the map
-			}
-			
-		}
 
-		for(int key : dictionary.keySet() ) {
-			this.simpInNum *= (Math.pow(key, dictionary.get(key))); //the inner number is equal to the prime**(leftover in hashmap)
-		}
-	}
-	
-	
-	private void setDecimal() {
-		decimal = getSimpOutNum() * (Math.pow(getSimpInNum(), 1/(double)index));
-	}
-	
-	/**
-	 * Returns the positive decimal representation of the radical
-	 * @return double PositiveDecimal
-	 */
-	public double getPosDecimal() {
-		return decimal;
-	}
-	
-	/**
-	 * Returns the Negative Representation of the radical
-	 * @return double NegativeDecimal
-	 */
-	public double getNegDecimal() {
-		return decimal * -1;
-	}
-	/**
-	 * Returns the simplified inner number of a Radical.
-	 * 
-	 * @return int of the simplified inner number
-	 */
-	public Fraction getSimpInNum(){
-		return this.simpInNum;
-	}
-	/**
-	 * Returns the simplified outter number of a Radical
-	 * @return int of the simplified outter number
-	 */
-	public Fraction getSimpOutNum(){
-		return this.simpOutNum;
-	}
-	/**
-	 * Returns the non-simplified inner number
-	 * @return int of the non simplified inner number
-	 */
-	public Fraction getInNum(){
-		return inNum;
-	}
-	/**
-	 * Returns whether or not the radical is an imaginary number
-	 * @return boolean imaginary
-	 */
-	public boolean isImaginary() {
-		return imaginary;
-	}
-	
-	/**
-	 * Returns the index of the Radical
-	 * @return int index
-	 */
-	public int getIndex() { 
-		return index;
-	}
-	
+    //Now we will re-define how this shit works
+    //The outernum is really just a fraction multiplied by an integer radical over one(also a fraction)
+    
+    //The first step: work with the outer number later, focus on the fraction with a radical in the bottom
+    //Multiply the bottom and top by the bottom number: root of(num ^ root-1)
+    //So far this looks good
+    private ArrayList<Integer> deRadBottom(Fraction inNum) {
+        //Do we have the square root of the otp and the bottom?
+        int bottom = (int)inNum.getDenominator(); //Can just set the bottom as the new num, have to cast to int even though it should be one
+        int unSimpTop = inNum.getNumerator() * (int)Math.pow(inNum.getDenominator(), (double)this.root - 1);
+
+        ArrayList finalNums = new ArrayList<Integer>();
+        finalNums.add(unSimpTop); //topNum @ (0)
+        finalNums.add(bottom); //bottomNum @ (1)
+        return finalNums; //Return the end nums in an Arraylist [topNum , bottom]
+    }
+
+    //The second step: simplify the only radical left, integer, on the top
+    private ArrayList<Integer> simpIntRad(int innerNum) {
+        //Takes in an inner number, and outuputs and inner and outer
+        int simpOutNum = 1;
+        int simpInNum = 1;
+        Map<Integer, Integer> dictionary = new BreakerDown(innerNum).getDictionary();
+
+        for(int key : dictionary.keySet() ){
+             // If there is enough to take out a set
+            if(dictionary.get(key) >= root ){
+                // the outer number is multiplied by the taken out groups of numbers
+                simpOutNum = (int) (simpOutNum * (Math.pow(key,(int)(dictionary.get(key) / root)))); 
+                // the left over numbers that weren't taken out are left in the map
+                dictionary.put(key,dictionary.get(key) - (int)(dictionary.get(key) / root) * root); 
+            }
+            
+        }
+        for(int key : dictionary.keySet() ) {
+            simpInNum *= (Math.pow(key, dictionary.get(key))); //the inner number is equal to the prime**(leftover in hashmap)
+        }
+
+        ArrayList<Integer> finalNums = new ArrayList<>();
+        finalNums.add(simpInNum); //inner @ [0]
+        finalNums.add(simpOutNum); //outer @ [1]
+
+        return finalNums;
+    }
+
     /**
-     * <p> Method returning all of the publicly needed info for a print out of the class. Also known as a toString</p>
-     * @return String to be printed showing the fields of the class
-     **/
+     * @return the origInNum
+     */
+    public double getOrigInNum() {
+        return origInNum;
+    }
+
+    /**
+     * @return the origOutNum
+     */
+    public double getOrigOutNum() {
+        return origOutNum;
+    }
+
+    /**
+     * @return the root
+     */
+    public int getRoot() {
+        return root;
+    }
+
+    /**
+     * @return the unSimpInNum
+     */
+    public Fraction getUnSimpInNum() {
+        return unSimpInNum;
+    }
+
+    /**
+     * @return the unSimpOutNum
+     */
+    public Fraction getUnSimpOutNum() {
+        return unSimpOutNum;
+    }
+
+    /**
+     * @return the simpInNum
+     */
+    public int getSimpInNum() {
+        return simpInNum;
+    }
+
+    /**
+     * @return the simpOutNum
+     */
+    public Fraction getSimpOutNum() {
+        return simpOutNum;
+    }
+
     public String toString() {
-        return "Innner Number: " + inNum + "\nOutter Nummber: " + outNum + "\nIndex: " + index + 
-            "\nSimplified Inner Number: " + simpInNum + "\nSimplified Outter Number: " + simpOutNum + 
-            "\nDecimal: " + decimal + "\n Is Imaginary: " + imaginary;
+        return "Root:" + root + "\nSimpInNum: " + simpInNum + "\nSimpOutNum: " + simpOutNum.toString();
     }
 }
