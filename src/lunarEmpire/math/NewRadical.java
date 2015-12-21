@@ -21,7 +21,6 @@ public class NewRadical {
         this.unSimpOutNum = new Fraction(outNum, 1);
         this.root = root;
         calc();
-        //Run the calculations
     }
 
     //Do all calculations here
@@ -141,5 +140,9 @@ public class NewRadical {
      */
     public Fraction getSimpOutNum() {
         return simpOutNum;
+    }
+
+    public String toString() {
+        return "Root:" + root + "\nSimpInNum: " + simpInNum + "\nSimpOutNum: " + simpOutNum.toString();
     }
 }
