@@ -1,5 +1,7 @@
 package lunarEmpire.math;
 
+import java.util.Map;
+
 public class NewRadical {
     //Lets get to work
     private double origInNum;
@@ -24,17 +26,38 @@ public class NewRadical {
     //The first step: work with the outer number later, focus on the fraction with a radical in the bottom
     //Multiply the bottom and top by the bottom number: root of(num ^ root-1)
     //So far this looks good
-    public void deRadBottom() {
+    private void deRadBottom() {
         //Do we have the square root of the otp and the bottom?
         int bottom = (int)inNum.getDenominator(); //Can just set the bottom as the new num, have to cast to int even though it should be one
         int unSimpTop = inNum.getNumerator() * (int)Math.pow(inNum.getDenominator(), (double)this.root - 1);
         System.out.println("New Bottom: " + bottom);
         System.out.println("New Top: " + unSimpTop);
+        //TODO Return something
     }
 
     //The second step: simplify the only radical left, integer, on the top
-    private void simpIntRad() {
+    private void simpIntRad(int innerNum) {
+        //Takes in an inner number, and outuputs and inner and outer
+		int simpOutNum = 1;
+		int simpInNum = 1;
+        Map<Integer, Integer> dictionary = new BreakerDown(innerNum).getDictionary();
 
+		for(int key : dictionary.keySet() ){
+			 // If there is enough to take out a set
+			if(dictionary.get(key) >= root ){
+                // the outer number is multiplied by the taken out groups of numbers
+                simpOutNum = (int) (simpOutNum * (Math.pow(key,(int)(dictionary.get(key) / root)))); 
+                // the left over numbers that weren't taken out are left in the map
+                dictionary.put(key,dictionary.get(key) - (int)(dictionary.get(key) / root) * root); 
+			}
+			
+		}
+		for(int key : dictionary.keySet() ) {
+			simpInNum *= (Math.pow(key, dictionary.get(key))); //the inner number is equal to the prime**(leftover in hashmap)
+		}
+        System.out.println("Inner Num :" + simpInNum);
+        System.out.println("Outer Num: " + simpOutNum);
+        //TODO return something
     }
 
     //Step 3: Now we have a third outer number in its own fraction like the first

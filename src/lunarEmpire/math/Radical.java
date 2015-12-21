@@ -79,6 +79,7 @@ public class Radical{
 			}
 			
 		}
+
 		for(int key : dictionary.keySet() ) {
 			this.simpInNum *= (Math.pow(key, dictionary.get(key))); //the inner number is equal to the prime**(leftover in hashmap)
 		}
