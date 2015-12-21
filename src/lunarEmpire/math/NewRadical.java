@@ -67,7 +67,7 @@ public class NewRadical {
     }
 
     //The second step: simplify the only radical left, integer, on the top
-    public ArrayList<Integer> simpIntRad(int innerNum) {
+    private ArrayList<Integer> simpIntRad(int innerNum) {
         //Takes in an inner number, and outuputs and inner and outer
         int simpOutNum = 1;
         int simpInNum = 1;
