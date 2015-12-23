@@ -13,8 +13,11 @@ import java.util.ArrayList;
  * @author Malcolm Boyd
  * @version 1.0
  */
+
+//TODO
+//imaginary function ---fix this up and find out wtf is going on with the whole different roots and while loop issue
+//decimal
 public class Radical {
-    //Lets get to work
     private double origInNum;
     private double origOutNum;
     private int root;
@@ -22,6 +25,7 @@ public class Radical {
     private Fraction unSimpOutNum;
     private int simpInNum;
     private Fraction simpOutNum;
+    private boolean imaginary;
 
  	/**
 	 * The constructor for Radical class that fills object's fields and simplifies the a radical.
@@ -33,12 +37,34 @@ public class Radical {
 	 */   
     public Radical(double inNum, double outNum, int root) {
         //Set the class fields
+        
+        // See if its imaginary
+        boolean needsChange = false;
+        if(inNum < 0) {
+            if (root % 2 != 0) {
+                imaginary = false;
+                needsChange = true;
+            } else {
+                imaginary = true;
+            }
+        }else {
+            imaginary = false;
+        }
+
+        //avoid infinite loop by making the number positive
+        if(inNum < 0) {
+            inNum *= -1;
+        }
+
         this.origInNum = inNum;
         this.origOutNum = outNum;
         this.unSimpInNum = new Fraction(inNum, 1);
         this.unSimpOutNum = new Fraction(outNum, 1);
         this.root = root;
         calc();
+        if(needsChange) {
+            simpOutNum = Fraction.multiply(simpOutNum, new Fraction(-1.0, 1.0));
+        }
     }
 
     //Do all calculations here
@@ -161,6 +187,6 @@ public class Radical {
     }
 
     public String toString() {
-        return "Root:" + root + "\nSimpInNum: " + simpInNum + "\nSimpOutNum: " + simpOutNum.toString();
+        return "Root:" + root + "\nSimpInNum: " + simpInNum + "\nSimpOutNum: " + simpOutNum.toString() + "\nImaginary: " + imaginary;
     }
 }
