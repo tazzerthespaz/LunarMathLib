@@ -50,7 +50,7 @@ public class Quadratic {
      **/
 	public void calcRoots() {
 		Fraction offset = new Fraction((b * -1), 1); //TODO may need to check the math on this one
-		int radicand = b * b - (4 * a * c); //TODO figure out a way to fix this shit probably make it so that Radical doesn't simplify doubles
+		double radicand = b * b - (4 * a * c); //TODO figure out a way to fix this shit probably make it so that Radical doesn't simplify doubles
 		double denominator = 2 * a;
 		roots = new Root(offset, radicand, denominator);
 	}

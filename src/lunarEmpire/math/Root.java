@@ -14,7 +14,7 @@ public class Root extends Fraction {
  * 		         denominator
  */
 	private Fraction offset;
-	private int radicand;
+	private double radicand;
 	private Radical radical;
 	private Double positiveDecimal;
 	private Double negativeDecimal;
@@ -30,7 +30,7 @@ public class Root extends Fraction {
      * @param radicand An int that is inside the radical.
      * @param denominator The int inside the radical.
      **/
-	public Root(Fraction offset, int radicand, double denominator) {
+	public Root(Fraction offset, double radicand, double denominator) {
 		super(1.0, denominator);
 		setNumerator(offset, new Radical(radicand, 1, 2));
 		if(radical.isImaginary()) {
@@ -97,7 +97,7 @@ public class Root extends Fraction {
      *
      * @param radicand The number inside the radical.
      **/
-	public void setRadicand(int radicand) {
+	public void setRadicand(double radicand) {
 		this.radicand = radicand;
 	}
 		
@@ -135,7 +135,7 @@ public class Root extends Fraction {
      *
      * @return int The radicand.
      **/
-	public int getRadicand() {
+	public double getRadicand() {
 		return radicand;
 	}
 	
