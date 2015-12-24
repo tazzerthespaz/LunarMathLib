@@ -26,15 +26,16 @@ public class Radical {
     private int simpInNum;
     private Fraction simpOutNum;
     private boolean imaginary;
+    private double decimal;
 
- 	/**
-	 * The constructor for Radical class that fills object's fields and simplifies the a radical.
-	 *  
-	 * Runs the simplify method and fills all fields
-	 * @param inNum
-	 * @param outNum
-	 * @param index
-	 */   
+    /**
+     * The constructor for Radical class that fills object's fields and simplifies the a radical.
+     *  
+     * Runs the simplify method and fills all fields
+     * @param inNum
+     * @param outNum
+     * @param index
+     */   
     public Radical(double inNum, double outNum, int root) {
         //Set the class fields
         
@@ -65,6 +66,7 @@ public class Radical {
         if(needsChange) {
             simpOutNum = Fraction.multiply(simpOutNum, new Fraction(-1.0, 1.0));
         }
+        calcDecimal();
     }
 
     //Do all calculations here
@@ -92,6 +94,10 @@ public class Radical {
         
     }
 
+    private void calcDecimal() {
+        this.decimal = this.simpOutNum.getDecimal() * Math.pow(this.simpInNum, 1.0/root);
+    }
+
     //Now we will re-define how this shit works
     //The outernum is really just a fraction multiplied by an integer radical over one(also a fraction)
     
@@ -103,7 +109,7 @@ public class Radical {
         int bottom = (int)inNum.getDenominator(); //Can just set the bottom as the new num, have to cast to int even though it should be one
         int unSimpTop = inNum.getNumerator() * (int)Math.pow(inNum.getDenominator(), (double)this.root - 1);
 
-        ArrayList finalNums = new ArrayList<Integer>();
+        ArrayList<Integer> finalNums = new ArrayList<Integer>();
         finalNums.add(unSimpTop); //topNum @ (0)
         finalNums.add(bottom); //bottomNum @ (1)
         return finalNums; //Return the end nums in an Arraylist [topNum , bottom]
@@ -186,7 +192,21 @@ public class Radical {
         return simpOutNum;
     }
 
+    /**
+     * @return the imaginary
+     */
+    public boolean isImaginary() {
+        return imaginary;
+    }
+
+    /**
+     * @return the decimal
+     */
+    public double getDecimal() {
+        return decimal;
+    }
+
     public String toString() {
-        return "Root:" + root + "\nSimpInNum: " + simpInNum + "\nSimpOutNum: " + simpOutNum.toString() + "\nImaginary: " + imaginary;
+        return "Root:" + root + "\nSimpInNum: " + simpInNum + "\nSimpOutNum: " + simpOutNum.toString() + "\nImaginary: " + imaginary + "\nDecimal: " + decimal;
     }
 }
