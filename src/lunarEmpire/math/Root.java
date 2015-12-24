@@ -58,8 +58,8 @@ public class Root extends Fraction {
 	private void calcDecimal() {
 		//Cant add if imaginary!!!!!
 		if(!isImaginary){
-			double posNumer = offset.getDecimal() + radical.getPosDecimal();
-			double negNumer = offset.getDecimal()  + radical.getNegDecimal();
+			double posNumer = offset.getDecimal() + radical.getDecimal();
+			double negNumer = offset.getDecimal()  + (radical.getDecimal() * -1);
 			
 			positiveDecimal = posNumer / (double)denominator;
 			negativeDecimal = negNumer / (double)denominator;
@@ -72,7 +72,7 @@ public class Root extends Fraction {
 	
 	private void simplify(){
 		Fraction offSetFrac = new Fraction(offset.getDecimal(),denominator);
-		Fraction outerNumFrac = new Fraction(radical.getSimpOutNum(), denominator);
+		Fraction outerNumFrac = new Fraction(radical.getSimpOutNum().getDecimal(), denominator);
 		
 //		
 //		if(offSetFrac.getNumerator() != offset || outerNumFrac.getNumerator() != radical.getSimpOutNum()) { //If Anything has changed
