@@ -32,7 +32,7 @@ public class Root extends Fraction {
      **/
 	public Root(Fraction offset, double radicand, double denominator) {
 		super(1.0, denominator);
-		setNumerator(offset, new Radical(radicand, 1, 2));
+		setNumerator(offset, new Radical(radicand, 1.0, 2));
 		if(radical.isImaginary()) {
 			isImaginary = true;
 		}
@@ -57,17 +57,17 @@ public class Root extends Fraction {
 
 	private void calcDecimal() {
 		//Cant add if imaginary!!!!!
-		if(!isImaginary){
+		//if(!isImaginary){
 			double posNumer = offset.getDecimal() + radical.getDecimal();
 			double negNumer = offset.getDecimal()  + (radical.getDecimal() * -1);
 			
 			positiveDecimal = posNumer / (double)denominator;
 			negativeDecimal = negNumer / (double)denominator;
 			
-		}else {
-			positiveDecimal = null;
-			negativeDecimal = null;
-		}
+		//}else {
+			//positiveDecimal = null;
+			//negativeDecimal = null;
+		//}
 	}
 	
 	private void simplify(){
@@ -81,6 +81,7 @@ public class Root extends Fraction {
 //		}
 		simpOffset = offSetFrac;
 		simpOuterNumber = outerNumFrac;
+        this.radicand = this.radical.getSimpInNum();
 		
 	}
 	
