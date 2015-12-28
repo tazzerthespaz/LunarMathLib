@@ -22,7 +22,7 @@ public class BreakerDown {
 		breakDown();
 	}
 	
-	private void breakDown(){
+	private void breakDown() {
 		int runningNum = getInput();
 		//The loop that actually does the breakdown
 		while(runningNum != 1){
@@ -37,6 +37,7 @@ public class BreakerDown {
 				*/
 				
 				//can you factor out the key from the running number?
+
 				if(canFactor(runningNum,key)){
 					//yes, add a tally to the HashMap per the respective key
 					runningNum = runningNum / key;
