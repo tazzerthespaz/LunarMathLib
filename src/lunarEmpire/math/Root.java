@@ -57,17 +57,17 @@ public class Root extends Fraction {
 
 	private void calcDecimal() {
 		//Cant add if imaginary!!!!!
-		//if(!isImaginary){
+		if(!isImaginary){
 			double posNumer = offset.getDecimal() + radical.getDecimal();
 			double negNumer = offset.getDecimal()  + (radical.getDecimal() * -1);
 			
 			positiveDecimal = posNumer / (double)denominator;
 			negativeDecimal = negNumer / (double)denominator;
 			
-		//}else {
-			//positiveDecimal = null;
-			//negativeDecimal = null;
-		//}
+		}else {
+			positiveDecimal = null;
+			negativeDecimal = null;
+		}
 	}
 	
 	private void simplify(){
