@@ -13,3 +13,7 @@ hs_err_pid*)
 
 #Vim working files
 *.swp
+
+
+#Test Files
+Test.java
