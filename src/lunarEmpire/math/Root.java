@@ -170,6 +170,10 @@ public class Root extends Fraction {
         return this.simpOffset;
     }
 
+    public Fraction getSimpOutNum() {
+        return this.simpOuterNumber;
+    }
+
     
     /**
      * Method gets a string representation of the positive root
