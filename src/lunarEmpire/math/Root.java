@@ -1,6 +1,5 @@
 package lunarEmpire.math;
 
-import lunarEmpire.math.Radical;
 /**
  * Class that represents a root. Extends fraction.
  *
@@ -48,6 +47,7 @@ public class Root extends Fraction {
 	public String toString() {
 		return "Offset: " + offset +
 		    "\nRadicand: " + radicand +
+            "\nDenominator " + denominator +
             "\npositiveDecimal: " + positiveDecimal +
             "\nnegativeDecimal: " + negativeDecimal +
             "\nisImaginary:" + isImaginary +
@@ -161,7 +161,16 @@ public class Root extends Fraction {
 			return true;
 		}
 	}
+
+    public Radical getRadical() {
+        return this.radical;
+    }
 	
+    public Fraction getSimpOffset() {
+        return this.simpOffset;
+    }
+
+    
     /**
      * Method gets a string representation of the positive root
      *
