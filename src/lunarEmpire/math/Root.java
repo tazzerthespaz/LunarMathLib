@@ -12,14 +12,14 @@ public class Root extends Fraction {
  * 		   -------------------------
  * 		         denominator
  */
-	private Fraction offset;
-	private double radicand;
-	private Radical radical;
-	private Double positiveDecimal;
-	private Double negativeDecimal;
-	private boolean isImaginary = false;
-	private Fraction simpOffset;
-	private Fraction simpOuterNumber;
+	private Fraction offset; //The number added to the radical
+	private double radicand; //Non-simplifie d
+	private Radical radical; //The real radical that is responsible for everything
+	private DecimalRoot positiveDecimal; //Decimal representation TODO: Make this a decimal class
+	private DecimalRoot negativeDecimal; //Dido
+	private boolean isImaginary = false; // Is the root imaginary (is radicand negative)
+	private Fraction simpOffset; // The simplified offset (offset / denom)
+	private Fraction simpOuterNumber; //The simplified outer number of the radical (outnum / denom)
 	
 	
     /**
@@ -61,12 +61,12 @@ public class Root extends Fraction {
 			double posNumer = offset.getDecimal() + radical.getDecimal();
 			double negNumer = offset.getDecimal()  + (radical.getDecimal() * -1);
 			
-			positiveDecimal = posNumer / (double)denominator;
-			negativeDecimal = negNumer / (double)denominator;
+			positiveDecimal = new RealDecimalRoot(posNumer / (double)denominator);
+			negativeDecimal = new RealDecimalRoot(negNumer / (double)denominator);
 			
 		}else {
-			positiveDecimal = null;
-			negativeDecimal = null;
+            positiveDecimal = new ImaginaryDecimalRoot(offset.getDecimal() / (double) denominator, radical.getDecimal() / (double)denominator);
+			negativeDecimal = new ImaginaryDecimalRoot(offset.getDecimal() / (double) denominator, radical.getDecimal()/ (double)denominator  * -1);
 		}
 	}
 	
@@ -118,7 +118,7 @@ public class Root extends Fraction {
      *
      * @return double The decimal positive representation of the root.
      **/
-	public double getPositiveDecimal() {
+	public DecimalRoot getPositiveDecimal() {
 		return positiveDecimal;
 	}
 	
@@ -127,7 +127,7 @@ public class Root extends Fraction {
      *
      * @return double The negative decimal of the root.
      **/
-	public double getNegativeDecimal() {
+	public DecimalRoot getNegativeDecimal() {
 		return negativeDecimal;
 	}
 	
