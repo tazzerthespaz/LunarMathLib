@@ -15,7 +15,10 @@ public class Quadratic {
     /**
      * The constructor setting all variables and calculates the roots.
      **/
-	public Quadratic(double a, double b, double c) {
+	public Quadratic(double a, double b, double c) throws AIsZeroException {
+        if(a == 0.0) {
+            throw new AIsZeroException();
+        }
 		setA(a);
 		setB(b);
 		setC(c);
