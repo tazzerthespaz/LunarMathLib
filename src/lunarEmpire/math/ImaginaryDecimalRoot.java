@@ -1,10 +1,20 @@
 package lunarEmpire.math;
 
 //May want to truncate or round stuff
+/**
+ * Constructor of a representation of a complex root in decimal form.
+ * @author Malcolm Boyd
+ * @version 1.1
+ **/
 public class ImaginaryDecimalRoot implements DecimalRoot {
     double realPart;
     double imaginaryPart;
 
+    /**
+     * Constructor, takes the real part and the following imaginary part.
+     * @param double The real portion of the complex number.
+     * @param double The imaginary portion of the complex number.
+     **/
     public ImaginaryDecimalRoot(double realPart, double imaginaryPart) {
         this.realPart = realPart;
         this.imaginaryPart = imaginaryPart;
