@@ -14,6 +14,7 @@ public class PrimeDict {
 	//this class will take an input and return a hashmap of primes up to that number
 	private int topNum;
 	private Map<Integer,Integer> dict = new HashMap<Integer,Integer>();
+    private int lastNum;
 	
 	/**
 	 * The constructor takes the number you want a hash map up to and creates the hashmap
@@ -21,7 +22,8 @@ public class PrimeDict {
 	 */
 	public PrimeDict(int number){
 		this.setTopNum(number);
-		createHashMap();
+        this.lastNum = 1;
+		//createHashMap();
 	}
 	
 	private void createHashMap(){
@@ -35,6 +37,37 @@ public class PrimeDict {
 			}
 		}
 	}
+
+    /**
+     * Method that returns the next largest prime after the argument.
+     *
+     * @param previousPrime
+     * @return int The next largest prime. -1 if there isn't another prime.
+     **/
+    public static int nextPrime(int prevPrime, int targetNum) {
+        for(int i = prevPrime + 1; i <= targetNum; i++) {
+			boolean isPrime = (new BigInteger(Integer.toString(i))).isProbablePrime(32);
+            if(isPrime) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int nextPrime() {
+        for(int i = lastNum + 1; i <= this.topNum; i++) {
+			boolean isPrime = (new BigInteger(Integer.toString(i))).isProbablePrime(32);
+            if(isPrime) {
+                this.lastNum = i;
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void resetPrime() {
+        this.lastNum = 1;
+    }
 	
 	/**
 	 * Returns a HashMap of primes up to the specified number.
